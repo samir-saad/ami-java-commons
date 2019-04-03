@@ -1,8 +1,19 @@
 {
   "externalConfig": {
-      "branch": "develop"
+    "branch": "develop"
   },
   "app": {
-      "type": "library"
+    "type": "library"
+  },
+  "ciConfig": {
+    "codeTestStage": {
+      "enable": false
+    },
+    "codeSecurityStage": {
+      "enable": false
+    },
+    "codeQualityStage": {
+      "enable": false
+    }
   }
 }
