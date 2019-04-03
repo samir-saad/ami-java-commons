@@ -1,0 +1,8 @@
+{
+  "externalConfig": {
+      "branch": "develop"
+  },
+  "app": {
+      "type": "library"
+  }
+}

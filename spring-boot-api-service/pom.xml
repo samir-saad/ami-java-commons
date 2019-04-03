@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>spring-boot-api-service</artifactId>
+	<packaging>pom</packaging>
+
+	<name>AMI: Spring Boot API Service</name>
+	<description>Parent project to be inherited by all Spring Boot API services</description>
+
+	<parent>
+		<groupId>org.ssaad.ami</groupId>
+		<artifactId>spring-boot-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../spring-boot-parent</relativePath>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.ssaad.ami</groupId>
+			<artifactId>common-api-error-handling</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ssaad.ami</groupId>
+			<artifactId>common-metrics</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Enabling circuit breaker -->
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>-->
+
+		<!-- Enabling distributed tracing -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>-->
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+
+		<!-- Splunk -->
+		<!--<dependency>
+			<groupId>com.splunk.logging</groupId>
+			<artifactId>splunk-library-javalogging</artifactId>
+		</dependency>-->
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${maven-springboot-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>generate-build-info</id>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>build-info</goal>
+							</goals>
+							<configuration>
+								<additionalProperties>
+									<encoding.source>${project.build.sourceEncoding}</encoding.source>
+									<encoding.output>${project.reporting.outputEncoding}</encoding.output>
+									<!--<java.source.name>${java.runtime.name}</java.source.name> <java.source.version>${java.runtime.version}</java.source.version> 
+										<java.target>${java.version}</java.target> <module.name>${demo.module.name}</module.name> -->
+								</additionalProperties>
+							</configuration>
+						</execution>
+						<execution>
+							<id>repackage-fat_jarwar</id>
+							<phase>package</phase>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+							<configuration>
+								<skip>true</skip>
+								<finalName>${project.build.finalName}-deployable</finalName>
+								<excludeDevtools>false</excludeDevtools>
+							</configuration>
+						</execution>
+						<execution>
+							<id>repackage-fat_jarwar_as_unix_binary</id>
+							<phase>package</phase>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+							<configuration>
+								<skip>true</skip>
+								<finalName>${project.build.finalName}-bin</finalName>
+								<executable>true</executable>
+								<excludeDevtools>true</excludeDevtools>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>rpm-maven-plugin</artifactId>
+					<version>${maven-rpm-plugin.version}</version>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>generate-rpm</id>
+							<goals>
+								<goal>attached-rpm</goal>
+							</goals>
+							<phase>package</phase>
+						</execution>
+					</executions>
+					<configuration>
+						<group>Development</group>
+						<description>Maven RPM Package</description>
+						<mappings>
+							<mapping>
+								<directory>/${app.home}/bin/</directory>
+								<!--This is the directory where the files in this mapping will be 
+									installed when the package is installed. This value must start with / -->
+								<artifact />
+
+							</mapping>
+							<!--Shawn Sterling from Sourced requested we remove this to avoid 
+								Transaction Check Error. Said wasn't needed. <mapping> <directory>/etc/init.d/</directory> 
+								</mapping> -->
+
+						</mappings>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>enable-spring-boot-maven-plugin</id>
+			<!-- This profile will be automatically activated if the directory "bin" 
+				exists in the root of the project -->
+			<!-- A bin folder assumes this is the main app module that generates the 
+				executable binaries. -->
+			<activation>
+				<file>
+					<exists>src/main/java</exists>
+				</file>
+			</activation>
+
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>generate-build-info</id>
+							</execution>
+							<execution>
+								<id>repackage-fat_jarwar</id>
+								<configuration>
+									<skip>true</skip>
+								</configuration>
+							</execution>
+							<execution>
+								<id>repackage-fat_jarwar_as_unix_binary</id>
+								<configuration>
+									<skip>false</skip>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>enable-rpm-maven-plugin</id>
+
+			<activation>
+				<os>
+					<family>Linux</family>
+				</os>
+				<file>
+					<exists>rpm</exists>
+				</file>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rpm-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
