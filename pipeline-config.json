@@ -7,13 +7,13 @@
   },
   "ciConfig": {
     "codeTestStage": {
-      "enable": false
+      "enable": true
     },
     "codeSecurityStage": {
-      "enable": false
+      "enable": true
     },
     "codeQualityStage": {
-      "enable": false
+      "enable": true
     }
   }
 }
