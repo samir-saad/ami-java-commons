@@ -65,13 +65,13 @@
 		<repository>
 			<id>releases</id>
 			<name>Releases Repository</name>
-			<url>http://nexus-cicd.cloudapps.ocp.local.net/repository/maven-releases/</url>
+			<url>http://nexus:8081/repository/maven-releases/</url>
 			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Snapshots Repository</name>
-			<url>http://nexus-cicd.cloudapps.ocp.local.net/repository/maven-snapshots/</url>
+			<url>http://nexus:8081/repository/maven-snapshots/</url>
 			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
