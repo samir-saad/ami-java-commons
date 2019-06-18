@@ -57,7 +57,7 @@
 
 		<maven-jaxb2-plugin.version>0.12.3</maven-jaxb2-plugin.version>
 		<soapui-maven-plugin.version>5.4.0</soapui-maven-plugin.version>
-		<dependency-check-maven.version>3.3.2</dependency-check-maven.version>
+		<dependency-check-maven.version>5.0.0</dependency-check-maven.version>
 
 	</properties>
 
@@ -283,7 +283,7 @@
 					<version>${codehaus-versions-maven-plugin.version}</version>
 					<configuration>
 						<outputFile>outdated-dependencies.txt</outputFile>
-						<rulesUri>https://raw.githubusercontent.com/samir-saad/ami-maven-resources/master/maven-version-rules.xml</rulesUri>
+						<rulesUri>${user.home}/.m2/maven-version-rules.xml</rulesUri>
 					</configuration>
 				</plugin>
 
@@ -411,8 +411,8 @@
 							hours -->
 						<cveValidForHours>12</cveValidForHours>
 						<!-- typical PCI scanning requirements are to FAIL at CVSS >= 4.0 -->
-						<failBuildOnCVSS>4</failBuildOnCVSS>
-						<suppressionFile>https://raw.githubusercontent.com/samir-saad/ami-maven-resources/master/dependency-check-suppressions.xml</suppressionFile>
+						<failBuildOnCVSS>10</failBuildOnCVSS>
+						<suppressionFile>${user.home}/.m2/dependency-check-suppressions.xml</suppressionFile>
 					</configuration>
 					<executions>
 						<execution>
