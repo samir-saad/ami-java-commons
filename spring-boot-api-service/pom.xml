@@ -23,12 +23,12 @@
 		<dependency>
 			<groupId>org.ssaad.ami</groupId>
 			<artifactId>common-api-error-handling</artifactId>
-			<version>${project.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.ssaad.ami</groupId>
 			<artifactId>common-metrics</artifactId>
-			<version>${project.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- Enabling circuit breaker -->
