@@ -21,6 +21,7 @@
 		<module>common-api-error-handling</module>
 		<module>common-security</module>
 		<module>common-metrics</module>
+		<module>common-swagger</module>
 		<module>spring-boot-api-service</module>
 	</modules>
 
@@ -54,10 +55,19 @@
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-jacoco-plugin.version>0.7.9</maven-jacoco-plugin.version>
 		<codehaus-versions-maven-plugin.version>2.7</codehaus-versions-maven-plugin.version>
+		<codehaus-versions-maven-plugin.rulesUri>file://${user.home}/.m2/maven-version-rules.xml</codehaus-versions-maven-plugin.rulesUri>
 
 		<maven-jaxb2-plugin.version>0.12.3</maven-jaxb2-plugin.version>
 		<soapui-maven-plugin.version>5.4.0</soapui-maven-plugin.version>
-		<dependency-check-maven.version>5.0.0</dependency-check-maven.version>
+		<dependency-check-maven.version>5.2.1</dependency-check-maven.version>
+		<!-- skip excessive CVE update checks for a designated duration in hours -->
+		<dependency-check-maven.cveValidForHours>12</dependency-check-maven.cveValidForHours>
+		<!-- typical PCI scanning requirements are to FAIL at CVSS >= 4.0 -->
+		<dependency-check-maven.failBuildOnCVSS>4</dependency-check-maven.failBuildOnCVSS>
+		<dependency-check-maven.suppressionFile>${user.home}/.m2/dependency-check-suppressions.xml</dependency-check-maven.suppressionFile>
+
+		<releases-repository.url>http://nexus-cicd.cloudapps.ocp.local.net/repository/maven-releases/</releases-repository.url>
+		<snapshots-repository.url>http://nexus-cicd.cloudapps.ocp.local.net/repository/maven-snapshots/</snapshots-repository.url>
 
 	</properties>
 
@@ -65,13 +75,13 @@
 		<repository>
 			<id>releases</id>
 			<name>Releases Repository</name>
-			<url>http://nexus:8081/repository/maven-releases/</url>
+			<url>${releases-repository.url}</url>
 			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Snapshots Repository</name>
-			<url>http://nexus:8081/repository/maven-snapshots/</url>
+			<url>${snapshots-repository.url}</url>
 			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
@@ -283,7 +293,7 @@
 					<version>${codehaus-versions-maven-plugin.version}</version>
 					<configuration>
 						<outputFile>outdated-dependencies.txt</outputFile>
-						<rulesUri>${user.home}/.m2/maven-version-rules.xml</rulesUri>
+						<rulesUri>${codehaus-versions-maven-plugin.rulesUri}</rulesUri>
 					</configuration>
 				</plugin>
 
@@ -324,8 +334,8 @@
 									<!--<requireProperty> -->
 									<!--<level>WARN</level> -->
 									<!-- will only display a warning but does not fail the build -->
-									<!--<property>project.groupId</property> <regex>com\.opticca\.services</regex> 
-										<regexMessage>groupId must be com.opticca.services</regexMessage> </requireProperty> -->
+									<!--<property>project.groupId</property> <regex>org\.ssaad\.ami</regex>
+										<regexMessage>groupId must be org.ssaad.services</regexMessage> </requireProperty> -->
 									<banDistributionManagement>
 										<message>Only the parent-pom can define distribution
 											management</message>
@@ -407,12 +417,12 @@
 					<artifactId>dependency-check-maven</artifactId>
 					<version>${dependency-check-maven.version}</version>
 					<configuration>
-						<!-- skip excessive CVE update checks for a designated duration in 
-							hours -->
-						<cveValidForHours>12</cveValidForHours>
+						<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+						<!-- skip excessive CVE update checks for a designated duration in hours -->
+						<cveValidForHours>${dependency-check-maven.cveValidForHours}</cveValidForHours>
 						<!-- typical PCI scanning requirements are to FAIL at CVSS >= 4.0 -->
-						<failBuildOnCVSS>10</failBuildOnCVSS>
-						<suppressionFile>${user.home}/.m2/dependency-check-suppressions.xml</suppressionFile>
+						<failBuildOnCVSS>${dependency-check-maven.failBuildOnCVSS}</failBuildOnCVSS>
+						<suppressionFile>${dependency-check-maven.suppressionFile}</suppressionFile>
 					</configuration>
 					<executions>
 						<execution>

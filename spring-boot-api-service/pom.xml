@@ -30,6 +30,11 @@
 			<artifactId>common-metrics</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.ssaad.ami</groupId>
+			<artifactId>common-swagger</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 
 		<!-- Enabling circuit breaker -->
 		<!--<dependency>
@@ -63,26 +68,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>-->
-
-		<!-- Swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-		</dependency>
 
 		<!-- Splunk -->
 		<!--<dependency>
