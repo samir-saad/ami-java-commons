@@ -1,105 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-boot-parent</artifactId>
-	<packaging>pom</packaging>
+    <artifactId>spring-boot-parent</artifactId>
+    <packaging>pom</packaging>
 
-	<name>AMI: Spring Boot Parent POM</name>
-	<description>Parent POM to be inherited by all Spring Boot services</description>
+    <name>AMI: Spring Boot Parent POM</name>
+    <description>Parent POM to be inherited by all Spring Boot services</description>
 
-	<parent>
-		<groupId>org.ssaad.ami</groupId>
-		<artifactId>spring-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../spring-parent</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.ssaad.ami</groupId>
+        <artifactId>spring-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../spring-parent</relativePath>
+    </parent>
 
-	<properties>
-		<springboot.version>2.1.3.RELEASE</springboot.version>
-		<springcloud.version>Greenwich.RELEASE</springcloud.version>
-		<swagger-springmvc.version>1.0.2</swagger-springmvc.version>
-		<springfox.version> 2.9.2</springfox.version>
+    <properties>
+        <springboot.version>2.3.0.RELEASE</springboot.version>
+        <springcloud.version>Hoxton.SR4</springcloud.version>
+        <swagger-springmvc.version>1.0.2</swagger-springmvc.version>
+        <springfox.version>2.9.2</springfox.version>
 
-		<maven-springboot-plugin.version>${springboot.version}</maven-springboot-plugin.version>
-	</properties>
+        <maven-springboot-plugin.version>${springboot.version}</maven-springboot-plugin.version>
+    </properties>
 
-	<dependencyManagement>
-		<dependencies>
+    <dependencyManagement>
+        <dependencies>
 
-			<!-- ====== SPRING BOOT Dependencies ====== -->
-			<dependency>
-				<!-- Import dependency management from Spring Boot -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${springboot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+            <!-- ====== SPRING BOOT Dependencies ====== -->
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<!-- ====== SPRING CLOUD Dependencies ====== -->
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${springcloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+            <!-- ====== SPRING CLOUD Dependencies ====== -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${springcloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-			<!-- ====== SWAGGER UI Dependencies ====== -->
-			<dependency>
-				<groupId>com.mangofactory</groupId>
-				<artifactId>swagger-springmvc</artifactId>
-				<version>${swagger-springmvc.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-webmvc</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+            <!-- ====== SWAGGER UI Dependencies ====== -->
+            <dependency>
+                <groupId>com.mangofactory</groupId>
+                <artifactId>swagger-springmvc</artifactId>
+                <version>${swagger-springmvc.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-webmvc</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger2</artifactId>
-				<version>${springfox.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger-ui</artifactId>
-				<version>${springfox.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-core</artifactId>
-				<version>${springfox.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-core</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>${springboot.version}</version>
-				<scope>test</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-		</dependencies>
-	</dependencyManagement>
+        </dependencies>
+    </dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

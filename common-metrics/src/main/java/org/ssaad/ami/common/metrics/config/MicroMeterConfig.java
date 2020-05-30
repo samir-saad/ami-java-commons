@@ -7,17 +7,14 @@ import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCusto
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 public class MicroMeterConfig implements MeterRegistryCustomizer {
     @Autowired
     ConfigurableApplicationContext appContext;
 
-    @Value("${application.domain:unknown}")
-    private String applicationDomain;
-
-    @Value("${application.lob:unknown}")
-    private String applicationLineOfBusiness;
-
+    // Default tags
     @Value("${spring.application.name:unknown}")
     private String applicationName;
 
@@ -28,15 +25,27 @@ public class MicroMeterConfig implements MeterRegistryCustomizer {
     private String namespace;
 
     @Value("${HOSTNAME:unknown}")
-    private String pod;
+    private String hostname;
+
+    // Custom tags
+    // application.metrics.custom-tags={'KEY1': 'value1', 'KEY2': 'value3', 'KEY3': 'value5'}
+    @Value("${application.metrics.custom-tags:unknown}")
+    private Map<String, String> customTags;
 
     @Override
     public void customize(MeterRegistry registry) {
-        registry.config().commonTags("domain", applicationDomain);
-        registry.config().commonTags("lob", applicationLineOfBusiness);
+
+        // Add default tags
         registry.config().commonTags("app", applicationName);
         registry.config().commonTags("profile", applicationProfile);
         registry.config().commonTags("namespace", namespace);
-        registry.config().commonTags("pod", pod);
+        registry.config().commonTags("hostname", hostname);
+        // For kubernetes
+        //registry.config().commonTags("pod", hostname);
+
+        // Add custom tags
+        customTags.forEach(
+                (key, value) -> registry.config().commonTags(key, value)
+        );
     }
 }
