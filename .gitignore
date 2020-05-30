@@ -17,3 +17,4 @@ target/
 *.jar
 *.war
 *.ear
+*.versionsBackup

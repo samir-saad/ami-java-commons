@@ -1,19 +1,5 @@
 {
-  "externalConfig": {
+  "primaryConfigRepo": {
     "branch": "develop"
-  },
-  "app": {
-    "type": "library"
-  },
-  "ciConfig": {
-    "codeTestStage": {
-      "enable": true
-    },
-    "codeSecurityStage": {
-      "enable": true
-    },
-    "codeQualityStage": {
-      "enable": true
-    }
   }
 }

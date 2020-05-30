@@ -1,3 +1,3 @@
 #!groovy
-@Library('ami-jenkins-shared-lib@develop') _
-AmiJavaLibraryPipeline()
+@Library('ami-jenkins-shared-lib@feature/enhanced-pipeline-model') _
+JavaLibMavenPipeline()
