@@ -44,8 +44,10 @@ public class MicroMeterConfig implements MeterRegistryCustomizer {
         //registry.config().commonTags("pod", hostname);
 
         // Add custom tags
-        customTags.forEach(
-                (key, value) -> registry.config().commonTags(key, value)
-        );
+        if (customTags != null) {
+            customTags.forEach(
+                    (key, value) -> registry.config().commonTags(key, value)
+            );
+        }
     }
 }
