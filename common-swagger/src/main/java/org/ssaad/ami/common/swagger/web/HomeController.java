@@ -1,8 +1,7 @@
 package org.ssaad.ami.common.swagger.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import springfox.documentation.annotations.ApiIgnore;
 
 
@@ -10,8 +9,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 public class HomeController {
 
-    //@RequestMapping({"/", "/swagger"})
-    @RequestMapping(path = {"/", "/swagger"}, method = {RequestMethod.GET})
+    @GetMapping({"/", "/swagger"})
     public String home() {
         return "redirect:/swagger-ui.html";
     }
