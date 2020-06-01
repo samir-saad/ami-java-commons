@@ -100,7 +100,7 @@
         </codehaus-versions-maven-plugin.rulesUri>
 
         <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
-        <soapui-maven-plugin.version>5.4.0</soapui-maven-plugin.version>
+        <soapui-maven-plugin.version>5.5.0</soapui-maven-plugin.version>
         <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
         <!-- skip excessive CVE update checks for a designated duration in hours -->
         <dependency-check-maven.cveValidForHours>12</dependency-check-maven.cveValidForHours>
