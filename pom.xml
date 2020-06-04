@@ -113,9 +113,10 @@
         <sonar-maven-plugin.version>3.7.0.1746</sonar-maven-plugin.version>
         <sonar.dependencyCheck.reportPath>target/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
         <sonar.dependencyCheck.htmlReportPath>target/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
+
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.reportPath>${basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>java</sonar.language>
 
         <releases-repository.url>http://nexus-devops.apps.ocp3.local.net/repository/maven-releases/
@@ -483,6 +484,7 @@
                         <!-- typical PCI scanning requirements are to FAIL at CVSS >= 4.0 -->
                         <failBuildOnCVSS>${dependency-check-maven.failBuildOnCVSS}</failBuildOnCVSS>
                         <suppressionFile>${dependency-check-maven.suppressionFile}</suppressionFile>
+                        <format>ALL</format>
                     </configuration>
                     <executions>
                         <execution>
