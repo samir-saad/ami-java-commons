@@ -12,7 +12,7 @@
 
     <name>Applications Modernization Initiative (AMI): Root POM</name>
     <description>Global Root POM defining Maven plugins and configurations to be inherited by all service within AMI
-        context
+        initiative context
     </description>
 
     <organization>
