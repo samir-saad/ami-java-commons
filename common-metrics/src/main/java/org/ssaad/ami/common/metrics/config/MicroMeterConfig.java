@@ -29,7 +29,7 @@ public class MicroMeterConfig implements MeterRegistryCustomizer {
 
     // Custom tags
     // application.metrics.custom-tags={'KEY1': 'value1', 'KEY2': 'value3', 'KEY3': 'value5'}
-    @Value("#{${application.metrics.custom-tags : {}}}")
+    @Value("#{${application.metrics.custom-tags}}")
     private Map<String, String> customTags;
 
     @Override
@@ -41,7 +41,7 @@ public class MicroMeterConfig implements MeterRegistryCustomizer {
         registry.config().commonTags("namespace", namespace);
         registry.config().commonTags("hostname", hostname);
         // For kubernetes
-        //registry.config().commonTags("pod", hostname);
+        registry.config().commonTags("pod", hostname);
 
         // Add custom tags
         if (customTags != null) {
