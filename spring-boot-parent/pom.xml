@@ -20,7 +20,7 @@
 
     <properties>
         <springboot.version>2.3.0.RELEASE</springboot.version>
-        <springcloud.version>Hoxton.SR4</springcloud.version>
+        <springcloud.version>Hoxton.SR5</springcloud.version>
         <swagger-springmvc.version>1.0.2</swagger-springmvc.version>
         <springfox.version>2.9.2</springfox.version>
 
