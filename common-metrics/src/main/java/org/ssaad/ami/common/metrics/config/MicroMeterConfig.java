@@ -29,7 +29,7 @@ public class MicroMeterConfig implements MeterRegistryCustomizer {
 
     // Custom tags
     // application.metrics.custom-tags={'KEY1': 'value1', 'KEY2': 'value3', 'KEY3': 'value5'}
-    @Value("#{${application.metrics.custom-tags}}")
+    @Value("#{${application.metrics.custom-tags:{}}}")
     private Map<String, String> customTags;
 
     @Override
