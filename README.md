@@ -1,1 +1,8 @@
-# ami-commons
+# ami-java-commons
+
+
+|Branch   |Build Status   |Quality Status   |Coverage   |Security Rating   |
+|---|---|---|---|---|
+|master   |[![Build Status](http://ssaad.ddns.net:58080/buildStatus/icon?job=ami-java-commons%2Fmaster)](http://ssaad.ddns.net:58080/job/ami-java-commons/job/master)   |[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=master&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=master)   |[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=master&metric=coverage)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=master)   |[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=master&metric=security_rating)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=master)   |
+|develop   |[![Build Status](http://ssaad.ddns.net:58080/buildStatus/icon?job=ami-java-commons%2Fdevelop)](http://ssaad.ddns.net:58080/job/ami-java-commons/job/develop)   |[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=develop&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=develop)   |[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=develop&metric=coverage)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=develop)   |[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.ssaad.ami%3Ajava-commons&branch=develop&metric=security_rating)](https://sonarcloud.io/dashboard?id=org.ssaad.ami%3Ajava-commons&branch=develop)   |
+|   |   |   |   |   |
