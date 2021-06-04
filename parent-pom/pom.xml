@@ -25,7 +25,7 @@
         <logback.version>1.2.3</logback.version>
         <logstash.version>6.3</logstash.version>
         <splunk.version>1.7.3</splunk.version>
-        <httpclient.version>4.5.12</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <guava.version>29.0-jre</guava.version>
     </properties>
 
